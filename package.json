@@ -1,0 +1,28 @@
+{
+  "name": "browserify-boilerplate",
+  "version": "1.0.0",
+  "description": "My ideal browserify workflow setup. Opinionated, and more of a reference than a usable package.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul Redmond <paulrredmond@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babelify": "^6.1.3",
+    "browserify": "^10.2.6",
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "lodash.assign": "^3.2.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.3"
+  },
+  "dependencies": {
+    "backbone": "^1.2.1",
+    "backbone.marionette": "^2.4.2",
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3"
+  }
+}
