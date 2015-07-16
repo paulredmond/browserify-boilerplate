@@ -1,5 +1,4 @@
-import Marionette from 'backbone.marionette'
-import { ItemView } from 'backbone.marionette'
+import Marionette, { ItemView } from 'backbone.marionette'
 import template from './demo-view.hbs'
 
 export default ItemView.extend({
