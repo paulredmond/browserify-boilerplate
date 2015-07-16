@@ -25,16 +25,25 @@ var customOpts = {
 var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));
 
-// add transformations here
-// i.e. b.transform(coffeeify);
-b.transform(babelify);
-b.transform(hbsfy);
+/**
+ * Apply common transformations.
+ *
+ * @param  {[type]} b [description]
+ * @return {[type]}   [description]
+ */
+function transform(b) {
+  // add transformations here
+  // i.e. b.transform(coffeeify);
+  b.transform(babelify);
+  b.transform(hbsfy);
+}
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 b.on('update', bundle); // on any dep update, runs the bundler
 b.on('log', gutil.log); // output build logs to terminal
 
 function bundle() {
+  transform(b);
   return b.bundle()
     // log errors if they happen
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
@@ -53,7 +62,7 @@ gulp.task('build', function () {
     entries: ['./src/index.js'],
     debug: true
   });
-  b.transform(babelify);
+  transform(b);
   b.on('log', gutil.log);
   return b.bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
@@ -71,7 +80,7 @@ gulp.task('shipit', function () {
     entries: ['./src/index.js'],
     debug: false
   });
-  b.transform(babelify);
+  transform(b);
   b.on('log', gutil.log);
   return b.bundle()
     .on('error', function (error) {

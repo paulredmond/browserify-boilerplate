@@ -4,8 +4,10 @@
   "description": "My browserify workflow setup. Meant as a reference more than a usable package.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp build"
+    "test"   : "echo \"Error: no test specified\" && exit 1",
+    "build"  : "gulp build",
+    "ship"   : "gulp shipit",
+    "shipit" : "gulp shipit"
   },
   "author": "Paul Redmond <paulrredmond@gmail.com>",
   "license": "MIT",
