@@ -1,10 +1,11 @@
 {
   "name": "browserify-boilerplate",
   "version": "1.0.0",
-  "description": "My ideal browserify workflow setup. Meant as a reference more than a usable package.",
+  "description": "My browserify workflow setup. Meant as a reference more than a usable package.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build"
   },
   "author": "Paul Redmond <paulrredmond@gmail.com>",
   "license": "MIT",
@@ -12,7 +13,9 @@
     "babelify": "^6.1.3",
     "browserify": "^10.2.6",
     "gulp": "^3.9.0",
+    "gulp-notify": "^2.2.0",
     "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "lodash.assign": "^3.2.0",
     "vinyl-buffer": "^1.0.0",

@@ -8,6 +8,8 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
+var uglify = require('gulp-uglify');
+var notify = require('gulp-notify');
 
 // Transformations
 var babelify = require('babelify');
@@ -41,3 +43,43 @@ function bundle() {
     .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./dist'));
 }
+
+gulp.task('build', function () {
+  var b = browserify({
+    entries: ['./src/index.js'],
+    debug: true
+  });
+  b.transform(babelify);
+  b.on('log', gutil.log);
+  return b.bundle()
+    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+    // optional, remove if you dont want sourcemaps
+    .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+       // Add transformation tasks to the pipeline here.
+    .pipe(sourcemaps.write('./')) // writes .map file
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('shipit', function () {
+  var b = browserify({
+    entries: ['./src/index.js'],
+    debug: false
+  });
+  b.transform(babelify);
+  b.on('log', gutil.log);
+  return b.bundle()
+    .on('error', function (error) {
+      gutil.log(error);
+      notify(error)
+    })
+    .pipe(source('bundle.min.js'))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist'))
+    .pipe(notify({
+      title: "Ship It!",
+      message: "bundle.min.js ready for delivery"
+    }))
+});
