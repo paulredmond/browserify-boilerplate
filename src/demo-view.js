@@ -1,7 +1,15 @@
+import Marionette from 'backbone.marionette'
 import { ItemView } from 'backbone.marionette'
+import template from './demo-view.hbs'
 
 export default ItemView.extend({
-  template: "<p>Oh Hai, Demo!</p>",
+  name: "Demo",
+  template: template,
+  serializeData: function () {
+    return {
+      name: Marionette.getOption(this, "name")
+    }
+  },
   events: {
     "click": "onClick"
   },

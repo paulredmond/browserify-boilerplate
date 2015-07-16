@@ -21,7 +21,7 @@ DemoApp.on("before:start", function () {
 });
 
 DemoApp.on("start", function () {
-  let view = new DemoView();
+  let view = new DemoView({ name: 'Mark' });
   DemoApp.regions.main.show(view);
 });
 

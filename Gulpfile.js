@@ -13,6 +13,9 @@ var notify = require('gulp-notify');
 
 // Transformations
 var babelify = require('babelify');
+var hbsfy = require("hbsfy").configure({
+  extensions: ["hbs"]
+});
 
 // add custom browserify options here
 var customOpts = {
@@ -25,6 +28,7 @@ var b = watchify(browserify(opts));
 // add transformations here
 // i.e. b.transform(coffeeify);
 b.transform(babelify);
+b.transform(hbsfy);
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 b.on('update', bundle); // on any dep update, runs the bundler
