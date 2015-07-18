@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import _ from 'underscore'
-import Bacbone from 'backbone'
+import Backbone from 'backbone'
 import { Application, LayoutView, ItemView } from 'backbone.marionette'
 import DemoView from './demo-view'
 
